@@ -1,0 +1,9 @@
+QPlainTextEdit {
+background-color: #10151c;
+border: 1px solid #284155;
+border-radius: 8px;
+color: #d6e2ee;
+padding: 10px;
+selection-background-color: #2d7ba6;
+}
+QPlainTextEdit:focus { border: 1px solid #4fc3f7; }

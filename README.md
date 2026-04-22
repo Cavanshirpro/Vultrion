@@ -114,9 +114,10 @@ ADBez/
 │   ├── settings.py         # Settings configuration tab
 │   └── terminal.py         # Professional terminal tab
 ├── ui/                     # Custom UI components
-│   └── terminalInput.py         # Terminal UI components
+│   └── terminal.py         # Terminal UI components
 ├── styles/                 # UI styling
 │   ├── main.qss            # Qt stylesheet
+│   └── TerminalTab.qss     # Terminal stylesheet
 ├── data/                   # Application data
 │   └── settings.json       # User settings and preferences
 └── adb/                    # ADB tools and utilities
@@ -124,6 +125,42 @@ ADBez/
     ├── MyNotes.txt         # Usage notes and tips
     └── ...                 # Other ADB-related files
 ```
+
+
+### - Professional Terminal & Architecture Improvements
+
+**✨ New Features:**
+- 💻 **Professional Terminal Tab**: Built-in ADB terminal with autocomplete and history
+- 🔄 **Command History**: Navigate previous commands with arrow keys
+- 🎯 **Smart Autocomplete**: Tab completion for ADB commands
+
+**🏗️ Architecture & Data Model Improvements:**
+- **ConnectedDevice Data Model**: New comprehensive device tracking with:
+  - Device types: USB and TCPIP
+  - Device states: device, offline, unauthorized, recovery, sideload, bootloader
+  - Device properties: serial, product, model, transport_id
+  - Hash and equality comparison methods
+- **Enhanced checkData Structure**: 
+  - `founded_ips`: IPs discovered via Nmap scans
+  - `connected_devices`: List of ConnectedDevice objects (previously simple IP strings)
+- **Granular Signal System**: Individual signals for each data field change for better event handling
+- **Request/Response Architecture**: New data manager system for cleaner request/response patterns
+- **Terminal Worker Thread**: Dedicated `terminalWorker.py` with ADB command detection and smart autocomplete
+- **Professional Terminal UI**: Enhanced terminal components with colored output (input/output/error)
+
+**🐛 Bug Fixes & Improvements:**
+- Fixed Signal type definitions for better type safety
+- UTF-8 encoding improvements
+- Enhanced error handling in worker threads
+- Cross-platform path handling (Windows/Linux/macOS)
+
+**📂 New & Modified Files:**
+- `core/requests.py` - Data manager request/response system
+- `core/terminalWorker.py` - Professional terminal worker with ADB command detection
+- `tabs/terminal.py` - Professional terminal tab with worker thread integration
+- `ui/terminal.py` - Terminal UI components with colored output
+- `core/dataTypes.py` - Updated with ConnectedDevice model and new data fields
+- `main.py` - Updated with terminal tab integration
 
 ## 🛠️ Development
 

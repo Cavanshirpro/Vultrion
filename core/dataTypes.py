@@ -16,7 +16,6 @@ class ConnectedDevice(DDM):
         USB=0
         TCPIP=1
     class States:
-        # device offline unauthorized recovery sideload bootloader unknown
         DEVICE="device"
         OFFLINE="offline"
         UNAUTHORIZED="unauthorized"
