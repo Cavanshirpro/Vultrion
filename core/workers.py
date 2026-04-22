@@ -1,14 +1,26 @@
 from core.dataTypes import *
-import subprocess,ipaddress
+import subprocess,ipaddress,platform
 from PySide6.QtCore import QObject,Signal,Slot
 import os
 
-def get_total_ips(cidr:str) -> int:
+def get_total_ips(cidr:str)->int:
     try:
         net=ipaddress.ip_network(cidr,strict=False)
         return len(list(net.hosts()))
     except Exception:
         return 0
+
+def _get_adb_path(adb_path:str)->str:
+    adb_exec='adb.exe' if platform.system()=='Windows' else 'adb'
+    return os.path.join(adb_path,adb_exec)
+
+def _get_startup_info():
+    if platform.system()=='Windows':
+        si=subprocess.STARTUPINFO()
+        si.dwFlags|=subprocess.STARTF_USESHOWWINDOW
+        si.wShowWindow=0
+        return si
+    return None
 
 
 class NMapConnect(QObject):
@@ -112,13 +124,10 @@ class ADBConnect(QObject):
         reachable=[]
         unreachable=[]
         self._running=True
-        if os.name=='nt':
-            si=subprocess.STARTUPINFO()
-            si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-            si.wShowWindow=0
+        si=_get_startup_info()
         try:
             self._process=subprocess.Popen(
-                [self.adb_path+'/adb.exe',"connect",self.target],
+                [_get_adb_path(self.adb_path),"connect",self.target],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
@@ -184,13 +193,10 @@ class ADBDisconnect(QObject):
         reachable=[]
         unreachable=[]
         self._running=True
-        if os.name=='nt':
-            si=subprocess.STARTUPINFO()
-            si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-            si.wShowWindow=0
+        si=_get_startup_info()
         try:
             self._process=subprocess.Popen(
-                [self.adb_path+'/adb.exe',"disconnect",self.target],
+                [_get_adb_path(self.adb_path),"disconnect",self.target],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
@@ -249,16 +255,11 @@ class ScanDevices(QObject):
     def run(self):
         result:list[ConnectedDevice]=[]
         self._running=True
-
-        if os.name=='nt':
-            si=subprocess.STARTUPINFO()
-            si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-            si.wShowWindow=0
-        else:si=None
+        si=_get_startup_info()
 
         try:
             self._process=subprocess.Popen(
-                [self.adb_path + '/adb.exe',"devices","-l"],
+                [_get_adb_path(self.adb_path),"devices","-l"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
@@ -312,4 +313,3 @@ class ScanDevices(QObject):
 
             self.devices.emit(result)
             self.finished.emit()
-

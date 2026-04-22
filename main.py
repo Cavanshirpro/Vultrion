@@ -16,10 +16,13 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.tabWidget)
         self.dataManager=DataManagerRequest(self)
         self.dm=DataManager()
+
+        QWhatsThis.inWhatsThisMode()
         
         # Connect Read
         self.dataManager.read.settings.connect(lambda:self.dataManager.response.settings.emit(self.dm.settings()))
         self.dataManager.read.style.connect(lambda objectName,style:self.dataManager.response.style.emit(objectName,self.dm.loadStyle(style)))
+        self.dataManager.read.keyeventList.connect(lambda:self.dataManager.response.keyeventList.emit(self.dm.keyeventList()))
 
         # Connect Write
         self.dataManager.write.settings.connect(lambda data:self.dm.settings(True,data))
@@ -37,11 +40,18 @@ class MainWindow(QMainWindow):
         self.terminalTab=TerminalTab(self,self.checkdata,self.dataManager)
         self.tabWidget.addTab(self.terminalTab,"Terminal")
 
+        # Keyevent
+        self.keyeventTab=KeyEventsTab(self,self.checkdata,self.dataManager)
+        self.tabWidget.addTab(self.keyeventTab,"Keyevent")
+
         # Settings
         self.settingsTab=SettingsTab(self,self.checkdata,self.dataManager)
         self.tabWidget.addTab(self.settingsTab,"Settings")
 
         self.ScanDevicesButton=QPushButton("ScanDevices")
+        self.ScanDevicesButton.setToolTip("Scan for connected Android devices")
+        self.ScanDevicesButton.setWhatsThis("<h2>Scan for Devices</h2><p>Performs an immediate scan to detect all connected Android devices via USB and ADB over network, then updates the device list in all tabs.</p>")
+        self.ScanDevicesButton.setStatusTip("Click to scan for connected devices")
         self.ScanDevicesButton.setIcon(QIcon.fromTheme(QIcon.ThemeIcon.NetworkWireless))
         self.ScanDevicesButton.clicked.connect(self.ScanDevices)
         self.statusBar().addPermanentWidget(self.ScanDevicesButton)
@@ -76,6 +86,8 @@ class MainWindow(QMainWindow):
 
 if __name__=="__main__":
     app=QApplication(sys.argv)
+    app.setApplicationName("Vultrion")
+    app.setApplicationVersion("v1")
     app.setStyleSheet(DataManager().loadStyle('main'))
     window=MainWindow()
     window.show()

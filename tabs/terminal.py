@@ -40,7 +40,7 @@ class TerminalTab(QWidget):
         terminal_font.setStyleHint(QFont.StyleHint.Monospace)
         terminal_font.setPointSize(11)
         self.terminal.setFont(terminal_font)
-        self.dataManager.read.style.emit(self.objectName())
+        self.dataManager.read.style.emit(self.objectName(),self.objectName())
         self.dataManager.response.style.connect(self.get_style_sheet)
 
         self.MainLayout.addWidget(self.terminal)
@@ -91,7 +91,7 @@ class TerminalTab(QWidget):
         self._refresh_action_states()
 
     def get_style_sheet(self,objectName:str,style:str):
-        if objectName==self.objectName():self.setStyleSheet(style)
+        if objectName==self.objectName():self.setStyleSheet(style);print(style)
 
     def _announce_session(self) -> None:
         self.appendOutput("ADBez terminal session ready.")

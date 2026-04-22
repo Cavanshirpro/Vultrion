@@ -327,6 +327,465 @@ QMessageBox QLabel {
     color: #e0e0e0;
 }
 
+/* ============= RADIO BUTTON ============= */
+QRadioButton {
+    color: #e0e0e0;
+    spacing: 8px;
+    padding: 4px;
+}
+
+QRadioButton:hover {
+    color: #4fc3f7;
+}
+
+QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    border: 2px solid #3a3a3a;
+    background-color: #252525;
+}
+
+QRadioButton::indicator:hover {
+    border: 2px solid #4fc3f7;
+    background-color: #2d2d2d;
+}
+
+QRadioButton::indicator:checked {
+    background: qradialgradient(
+        cx:0.5, cy:0.5, radius:0.5,
+        stop:0 #4fc3f7,
+        stop:0.4 #00d4ff,
+        stop:1 #252525
+    );
+    border: 2px solid #4fc3f7;
+}
+
+QRadioButton::indicator:checked:hover {
+    background: qradialgradient(
+        cx:0.5, cy:0.5, radius:0.5,
+        stop:0 #4fc3f7,
+        stop:0.4 #00d4ff,
+        stop:1 #2d2d2d
+    );
+    border: 2px solid #00d4ff;
+}
+
+QRadioButton::indicator:disabled {
+    background-color: #1f1f1f;
+    border: 2px solid #2d2d2d;
+}
+
+QRadioButton::indicator:checked:disabled {
+    background: qradialgradient(
+        cx:0.5, cy:0.5, radius:0.5,
+        stop:0 #666666,
+        stop:0.4 #555555,
+        stop:1 #1f1f1f
+    );
+    border: 2px solid #2d2d2d;
+}
+
+/* ============= CHECKBOX ============= */
+QCheckBox {
+    color: #e0e0e0;
+    spacing: 8px;
+    padding: 4px;
+}
+
+QCheckBox:hover {
+    color: #4fc3f7;
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3a3a3a;
+    border-radius: 4px;
+    background-color: #252525;
+}
+
+QCheckBox::indicator:hover {
+    border: 2px solid #4fc3f7;
+    background-color: #2d2d2d;
+}
+
+QCheckBox::indicator:checked {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #4fc3f7,
+        stop:0.5 #00d4ff,
+        stop:1 #4fc3f7
+    );
+    border: 2px solid #4fc3f7;
+}
+
+QCheckBox::indicator:checked:hover {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #00d4ff,
+        stop:0.5 #4fc3f7,
+        stop:1 #00d4ff
+    );
+    border: 2px solid #00d4ff;
+}
+
+QCheckBox::indicator:disabled {
+    background-color: #1f1f1f;
+    border: 2px solid #2d2d2d;
+}
+
+QCheckBox::indicator:checked:disabled {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #555555,
+        stop:0.5 #666666,
+        stop:1 #555555
+    );
+    border: 2px solid #2d2d2d;
+}
+
+/* ============= LISTWIDGET & LISTVIEW CHECKBOXES ============= */
+QListWidget QCheckBox {
+    color: #e0e0e0;
+    spacing: 8px;
+    padding: 4px;
+}
+
+QListWidget QCheckBox:hover {
+    color: #4fc3f7;
+}
+
+QListWidget QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3a3a3a;
+    border-radius: 4px;
+    background-color: #252525;
+}
+
+QListWidget QCheckBox::indicator:hover {
+    border: 2px solid #4fc3f7;
+    background-color: #2d2d2d;
+}
+
+QListWidget QCheckBox::indicator:checked {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #4fc3f7,
+        stop:0.5 #00d4ff,
+        stop:1 #4fc3f7
+    );
+    border: 2px solid #4fc3f7;
+}
+
+QListWidget QCheckBox::indicator:checked:hover {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #00d4ff,
+        stop:0.5 #4fc3f7,
+        stop:1 #00d4ff
+    );
+    border: 2px solid #00d4ff;
+}
+
+QListWidget QCheckBox::indicator:disabled {
+    background-color: #1f1f1f;
+    border: 2px solid #2d2d2d;
+}
+
+QListWidget QCheckBox::indicator:checked:disabled {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #555555,
+        stop:0.5 #666666,
+        stop:1 #555555
+    );
+    border: 2px solid #2d2d2d;
+}
+
+/* ============= LISTVIEW CHECKBOXES ============= */
+QListView {
+    background-color: #1a1a1a;
+    border: 1px solid #2d2d2d;
+    border-radius: 6px;
+    outline: none;
+    padding: 5px;
+}
+
+QListView::item {
+    background-color: #252525;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    margin: 2px;
+    padding: 8px;
+    color: #e0e0e0;
+}
+
+QListView::item:hover {
+    background-color: #2d2d2d;
+    border: 1px solid #4fc3f7;
+}
+
+QListView::item:selected {
+    background-color: #1a1a1a;
+    border: 2px solid #4fc3f7;
+    color: #4fc3f7;
+}
+
+QListView::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3a3a3a;
+    border-radius: 4px;
+    background-color: #252525;
+    margin: 2px 4px;
+}
+
+QListView::indicator:hover {
+    border: 2px solid #4fc3f7;
+    background-color: #2d2d2d;
+}
+
+QListView::indicator:checked {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #4fc3f7,
+        stop:0.5 #00d4ff,
+        stop:1 #4fc3f7
+    );
+    border: 2px solid #4fc3f7;
+}
+
+QListView::indicator:checked:hover {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #00d4ff,
+        stop:0.5 #4fc3f7,
+        stop:1 #00d4ff
+    );
+    border: 2px solid #00d4ff;
+}
+
+QListView::indicator:disabled {
+    background-color: #1f1f1f;
+    border: 2px solid #2d2d2d;
+}
+
+QListView::indicator:checked:disabled {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #555555,
+        stop:0.5 #666666,
+        stop:1 #555555
+    );
+    border: 2px solid #2d2d2d;
+}
+
+QListView QCheckBox {
+    color: #e0e0e0;
+    spacing: 8px;
+    padding: 4px;
+}
+
+QListView QCheckBox:hover {
+    color: #4fc3f7;
+}
+
+QListView QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3a3a3a;
+    border-radius: 4px;
+    background-color: #252525;
+}
+
+QListView QCheckBox::indicator:hover {
+    border: 2px solid #4fc3f7;
+    background-color: #2d2d2d;
+}
+
+QListView QCheckBox::indicator:checked {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #4fc3f7,
+        stop:0.5 #00d4ff,
+        stop:1 #4fc3f7
+    );
+    border: 2px solid #4fc3f7;
+}
+
+QListView QCheckBox::indicator:checked:hover {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #00d4ff,
+        stop:0.5 #4fc3f7,
+        stop:1 #00d4ff
+    );
+    border: 2px solid #00d4ff;
+}
+
+QListView QCheckBox::indicator:disabled {
+    background-color: #1f1f1f;
+    border: 2px solid #2d2d2d;
+}
+
+QListView QCheckBox::indicator:checked:disabled {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #555555,
+        stop:0.5 #666666,
+        stop:1 #555555
+    );
+    border: 2px solid #2d2d2d;
+}
+
+/* ============= TREEWIDGET CHECKBOXES ============= */
+QTreeWidget QCheckBox {
+    color: #e0e0e0;
+    spacing: 8px;
+    padding: 4px;
+}
+
+QTreeWidget QCheckBox:hover {
+    color: #4fc3f7;
+}
+
+QTreeWidget QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3a3a3a;
+    border-radius: 4px;
+    background-color: #252525;
+}
+
+QTreeWidget QCheckBox::indicator:hover {
+    border: 2px solid #4fc3f7;
+    background-color: #2d2d2d;
+}
+
+QTreeWidget QCheckBox::indicator:checked {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #4fc3f7,
+        stop:0.5 #00d4ff,
+        stop:1 #4fc3f7
+    );
+    border: 2px solid #4fc3f7;
+}
+
+QTreeWidget QCheckBox::indicator:checked:hover {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #00d4ff,
+        stop:0.5 #4fc3f7,
+        stop:1 #00d4ff
+    );
+    border: 2px solid #00d4ff;
+}
+
+QTreeWidget QCheckBox::indicator:disabled {
+    background-color: #1f1f1f;
+    border: 2px solid #2d2d2d;
+}
+
+QTreeWidget QCheckBox::indicator:checked:disabled {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #555555,
+        stop:0.5 #666666,
+        stop:1 #555555
+    );
+    border: 2px solid #2d2d2d;
+}
+
+/* ============= TABLEWIDGET CHECKBOXES ============= */
+QTableWidget QCheckBox {
+    color: #e0e0e0;
+    spacing: 8px;
+    padding: 4px;
+}
+
+QTableWidget QCheckBox:hover {
+    color: #4fc3f7;
+}
+
+QTableWidget QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3a3a3a;
+    border-radius: 4px;
+    background-color: #252525;
+}
+
+QTableWidget QCheckBox::indicator:hover {
+    border: 2px solid #4fc3f7;
+    background-color: #2d2d2d;
+}
+
+QTableWidget QCheckBox::indicator:checked {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #4fc3f7,
+        stop:0.5 #00d4ff,
+        stop:1 #4fc3f7
+    );
+    border: 2px solid #4fc3f7;
+}
+
+QTableWidget QCheckBox::indicator:checked:hover {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #00d4ff,
+        stop:0.5 #4fc3f7,
+        stop:1 #00d4ff
+    );
+    border: 2px solid #00d4ff;
+}
+
+QTableWidget QCheckBox::indicator:disabled {
+    background-color: #1f1f1f;
+    border: 2px solid #2d2d2d;
+}
+
+QTableWidget QCheckBox::indicator:checked:disabled {
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #555555,
+        stop:0.5 #666666,
+        stop:1 #555555
+    );
+    border: 2px solid #2d2d2d;
+}
+
+/* ============= GROUP BOX ============= */
+QGroupBox {
+    color: #e0e0e0;
+    border: 2px solid #3a3a3a;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding-top: 10px;
+    font-weight: 500;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    margin-left: 12px;
+    margin-top: -8px;
+    padding: 2px 6px;
+    background-color: #1a1a1a;
+    color: #4fc3f7;
+}
+
+QGroupBox:hover {
+    border: 2px solid #4a4a4a;
+}
+
+QGroupBox:focus {
+    border: 2px solid #4fc3f7;
+}
+
 /* ============= TRANSITIONS & EFFECTS ============= */
 * {
     outline: none;

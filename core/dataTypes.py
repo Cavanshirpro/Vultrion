@@ -4,12 +4,50 @@ import time
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
+from dataclasses import dataclass
+from curseforgepy import types_models
 
+@dataclass
+class MetaData:
+    name:str=None
+    brief:str=None
+    description:str=None
 
 class Settings(DDM):
+    class Keyevent(DDM):
+        class Methods:
+            HybridThreadPoolSignals="HybridThreadPoolSignals"
+            DedicatedThreadPerWorker="DedicatedThreadPerWorker"
+            SequentialWorkerQueue="SequentialWorkerQueue"
+            class MetaData:
+                class HybridThreadPoolSignals(MetaData):
+                    name="Hybrid Thread Pool Signals"
+                    brief="Combines thread pool performance with signal-based communication."
+                    description="Best for scalable background work that still needs clean Qt-style communication."
+                class DedicatedThreadPerWorker(MetaData):
+                    name="Dedicated Thread per Worker"
+                    brief="Runs each worker in its own separate thread."
+                    description="Best for isolated, long-running, or sensitive tasks that need direct lifecycle control."
+                class SequentialWorkerQueue(MetaData):
+                    name="Sequential Worker Queue"
+                    brief="Runs workers one after another in a single ordered queue."
+                    description="Best for simple, predictable tasks that must execute in sequence rather than in parallel."
+        def __init__(self, data):
+            super().__init__(data)
+            self.method:str=data.get("method","HybridThreadPoolSignals")
     def __init__(self,data):
         super().__init__(data)
         self.adb_path:str=data.get("adb_path",'./adb')
+        self.keyevent:Settings.Keyevent=self.Keyevent(data.get("keyevent",{}))
+        
+
+class Documentation(DDM):
+    def __init__(self, data):
+        super().__init__(data)
+        self.name:str=data.get("name",'Unknown')
+        self.brief:str=data.get("brief",None)
+        self.description:str=data.get("description",None)
+        self.documentationFile:str=data.get("documentationFile",None)
 
 class ConnectedDevice(DDM):
     class Types:
@@ -49,6 +87,7 @@ class checkData(DDM):
         self.did_adb_work:bool=data.get("did_adb_work",False)
         self.choosen_language:str=data.get("choosen_language",'en')
         self.choosen_path_for_adb:str=data.get("choosen_path_for_adb",None)
+        self.keyeventMethod:str=data.get("keyeventMethod",Settings.Keyevent.Methods.HybridThreadPoolSignals)
 
 class CheckData(QObject):
     changed=Signal()
@@ -59,6 +98,7 @@ class CheckData(QObject):
     changed_did_adb_work=Signal(bool)
     changed_choosen_language=Signal(str)
     changed_choosen_path_for_adb=Signal(str)
+    changed_keyeventMethod=Signal(str)
 
     def __init__(self,data:checkData):
         super().__init__()
